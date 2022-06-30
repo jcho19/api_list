@@ -1,5 +1,6 @@
 from django.db import models
 
+#category of public API
 class Category(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=250, unique=True)
@@ -9,7 +10,7 @@ class Category(models.Model):
     class Meta:
         ordering = ('created', )
         
-    
+#information of public API (name, website, description, etc.)     
 class Api(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=250, unique=True)
