@@ -10,7 +10,7 @@ class Category(models.Model):
     class Meta:
         ordering = ('created', )
         
-#information of public API (name, website, description, etc.)     
+#information on public API (name, website, description, etc.)     
 class Api(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=250, unique=True)
