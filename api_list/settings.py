@@ -97,7 +97,7 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'API List REST API',
-    'DESCRIPTION': 'Stores categories and information on public APIS',
+    'DESCRIPTION': 'Stores categories and information on public APIs',
     'VERSION': '1.0.0',
     
 }
