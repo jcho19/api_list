@@ -81,7 +81,7 @@ class ApisTest(APITestCase):
         self.assertEqual(get_response.status_code, status.HTTP_200_OK)
         self.assertContains(get_response, 'Edamam Food Database Search API')
         
-    #test retrieve, update and destroy actions
+    #test retrieve, update, partial_update and destroy actions
     def test_apis_detail(self):
         #create an Api object to test the actions
         self.client.post(reverse('apis-list'), {'name': 'Edamam Food Database Search API',
@@ -93,13 +93,21 @@ class ApisTest(APITestCase):
         self.assertEqual(get_response.status_code, status.HTTP_200_OK)
         self.assertContains(get_response, 'Edamam Food Database Search API')
 
-        put_response = self.client.put(reverse('apis-detail', args=[Api.objects.get().id]),
+        patch_response = self.client.patch(reverse('apis-detail', args=[Api.objects.get().id]),
                                        {'name': 'Edamam Nutrition Analysis API',
                                         'website': 'https://developer.edamam.com/edamam-nutrition-api',
-                                        'description': 'https://developer.edamam.com/edamam-nutrition-api',
+                                        'description': 'Copy/paste any food recipe and learn its nutrition details in under a second',})
+        self.assertEqual(patch_response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Api.objects.get().name, 'Edamam Nutrition Analysis API')
+        
+        put_response = self.client.put(reverse('apis-detail', args=[Api.objects.get().id]),
+                                       {'name': 'Edamam Recipe Search API',
+                                        'website': 'https://developer.edamam.com/edamam-recipe-api',
+                                        'description': 'Search over 2.3 million recipes by diets, calories and nutrient ranges',
                                         'category': Category.objects.get().id})
         self.assertEqual(put_response.status_code, status.HTTP_200_OK)
-        self.assertEqual(Api.objects.get().name, 'Edamam Nutrition Analysis API')
+        self.assertEqual(Api.objects.get().name, 'Edamam Recipe Search API')
+        
 
         delete_response = self.client.delete(reverse('apis-detail', args=[Api.objects.get().id]))
         self.assertEqual(delete_response.status_code, status.HTTP_204_NO_CONTENT)
