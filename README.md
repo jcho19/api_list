@@ -6,7 +6,9 @@ Installation/Setup instructions (Must have Docker installed):
 2. cd api_list
 3. docker-compose up -d --build 
 4. docker-compose exec web python3 manage.py migrate
-5. docker-compose exec web python3 manage.py createsuperuser (login as the superuser you created to start writing to the API)
+5. docker-compose exec web python3 manage.py createsuperuser 
+
+Login in as the user you created. Now, you can create categories/information on public APIs!
 
 Below is the documentation:
 ![Alt text](api_schema_swagger-ui_.png "Documentation")
